@@ -1,11 +1,14 @@
 const demo_app = require('express')()
 const http = require('http').Server(demo_app)
 const gm = require('./games_manager')
+const games = require('./game_in_process')
 const bodyParser = require('body-parser');
 
 
 let game_manager = new gm()
+let dynamicgames = new games();
 
+dynamicgames.update( game_manager );
 demo_app.use(bodyParser);
 
 demo_app.post('/game', (req, res) => {
